@@ -1,4 +1,4 @@
-import MedicAI from "./MedicAIFullClean.jsx";
+import MedicAI from "./MedicAIFull.jsx";
 
 export default function App() {
   return <MedicAI />;
