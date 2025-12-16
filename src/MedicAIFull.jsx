@@ -363,7 +363,7 @@ export default function MedicAI() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="w-full max-w-md text-center">
           <div className="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-2xl">
-            <Sparkles size={64} className="text-white animate-pulse" />
+            <Sparkles size={64} className="text-black animate-pulse" />
           </div>
           <h2 className="text-3xl font-bold mb-2">Setting Up</h2>
           <p className="text-gray-600 mb-8">Analyzing...</p>
@@ -389,7 +389,7 @@ export default function MedicAI() {
     const q = qs[step];
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 text-white flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 text-black flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-32 h-32 mx-auto mb-6 bg-white bg-opacity-20 rounded-full flex items-center justify-center backdrop-blur-sm shadow-2xl">
@@ -462,7 +462,7 @@ export default function MedicAI() {
             <button
               onClick={() => step < 6 ? setStep(step + 1) : setup()}
               disabled={q.t !== 'textarea' && !data[q.f]}
-              className="w-full py-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 disabled:from-gray-300 disabled:to-gray-400 rounded-2xl font-bold text-white shadow-lg"
+              className="w-full py-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 disabled:from-gray-300 disabled:to-gray-400 rounded-2xl font-bold text-black shadow-lg"
             >
               {step === 6 ? 'Complete' : 'Next'}
             </button>
@@ -487,7 +487,7 @@ export default function MedicAI() {
                 <h2 className={`text-4xl font-bold mb-2 ${data.darkMode ? 'text-gray-100' : 'text-gray-900'}`}>Hello, {data.name}!</h2>
                 <p className={`text-lg ${data.darkMode ? 'text-gray-300' : 'text-gray-600'}`}>How are you feeling?</p>
               </div>
-              <button onClick={() => setPage('chat')} className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-3xl p-8 shadow-xl">
+              <button onClick={() => setPage('chat')} className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-black rounded-3xl p-8 shadow-xl">
                 <div className="w-16 h-16 mx-auto mb-4 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center">
                   <Sparkles size={32} />
                 </div>
@@ -559,7 +559,7 @@ export default function MedicAI() {
                   } else if (feature.id === 'profile') {
                     const layoutLength = (data.layout || []).filter(id => availableFeatures.find(f => f.id === id)).length;
                     return (
-                      <button key={feature.id} onClick={() => setPage('profile')} className={`bg-gradient-to-br from-green-400 to-blue-500 rounded-3xl p-6 shadow-lg ${layoutLength % 2 === 1 ? 'col-span-2' : ''} text-white`}>
+                      <button key={feature.id} onClick={() => setPage('profile')} className={`bg-gradient-to-br from-green-400 to-blue-500 rounded-3xl p-6 shadow-lg ${layoutLength % 2 === 1 ? 'col-span-2' : ''} text-black`}>
                         <div className="w-14 h-14 mx-auto mb-3 bg-white bg-opacity-30 rounded-2xl flex items-center justify-center">
                           <User size={28} />
                         </div>
@@ -597,7 +597,7 @@ export default function MedicAI() {
           )}
           {page === 'medications' && (
             <div>
-              <button onClick={() => setShowAddMed(true)} className="w-full bg-blue-500 text-white p-4 rounded-2xl mb-4 flex items-center justify-center gap-2 shadow-md font-semibold">
+              <button onClick={() => setShowAddMed(true)} className="w-full bg-blue-500 text-black p-4 rounded-2xl mb-4 flex items-center justify-center gap-2 shadow-md font-semibold">
                 <Plus size={20} />Add Med
               </button>
               <div className="space-y-3">
@@ -621,8 +621,8 @@ export default function MedicAI() {
           {page === 'profile' && (
             <div className="space-y-4">
               <div className="flex gap-2 mb-4">
-                <button onClick={() => setProfileTab('info')} className={`flex-1 p-3 rounded-xl font-semibold ${profileTab === 'info' ? 'bg-blue-500 text-white' : 'bg-white'}`}>Info</button>
-                <button onClick={() => setProfileTab('mental')} className={`flex-1 p-3 rounded-xl font-semibold ${profileTab === 'mental' ? 'bg-blue-500 text-white' : 'bg-white'}`}>Mental Health</button>
+                <button onClick={() => setProfileTab('info')} className={`flex-1 p-3 rounded-xl font-semibold ${profileTab === 'info' ? 'bg-blue-500 text-black' : 'bg-white'}`}>Info</button>
+                <button onClick={() => setProfileTab('mental')} className={`flex-1 p-3 rounded-xl font-semibold ${profileTab === 'mental' ? 'bg-blue-500 text-black' : 'bg-white'}`}>Mental Health</button>
               </div>
               {profileTab === 'info' && (
                 <div className="space-y-4">
@@ -632,10 +632,10 @@ export default function MedicAI() {
                         <img src={data.pic} className={`w-32 h-32 rounded-full object-cover border-4 border-${getAccent().primary}`} alt="Profile" />
                       ) : (
                         <div className={`w-32 h-32 rounded-full ${data.darkMode ? 'bg-gray-800' : 'bg-white'} border-4 border-${getAccent().primary} flex items-center justify-center shadow-lg`}>
-                          <User size={48} className={data.darkMode ? 'text-white' : ''} />
+                          <User size={48} className={data.darkMode ? 'text-black' : ''} />
                         </div>
                       )}
-                      <button onClick={() => fRef.current.click()} className={`absolute bottom-0 right-0 bg-${getAccent().primary} p-2 rounded-full text-white`}>
+                      <button onClick={() => fRef.current.click()} className={`absolute bottom-0 right-0 bg-${getAccent().primary} p-2 rounded-full text-black`}>
                         <Upload size={16} />
                       </button>
                       <input ref={fRef} type="file" accept="image/*" onChange={(e) => {
@@ -647,12 +647,12 @@ export default function MedicAI() {
                         }
                       }} className="hidden" />
                     </div>
-                    <h2 className={`text-2xl font-bold mt-4 ${data.darkMode ? 'text-white' : ''}`}>{data.name}</h2>
+                    <h2 className={`text-2xl font-bold mt-4 ${data.darkMode ? 'text-black' : ''}`}>{data.name}</h2>
                   </div>
                   <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-md text-center`}>
-                    <h3 className={`text-lg font-bold mb-4 ${data.darkMode ? 'text-white' : ''}`}>Health Score</h3>
-                    <div className={`text-5xl font-bold mb-4 ${data.darkMode ? 'text-white' : ''}`}>{data.score}</div>
-                    <div className={`inline-block px-6 py-3 rounded-full text-white font-bold ${grade(data.score).c}`}>
+                    <h3 className={`text-lg font-bold mb-4 ${data.darkMode ? 'text-black' : ''}`}>Health Score</h3>
+                    <div className={`text-5xl font-bold mb-4 ${data.darkMode ? 'text-black' : ''}`}>{data.score}</div>
+                    <div className={`inline-block px-6 py-3 rounded-full text-black font-bold ${grade(data.score).c}`}>
                       Grade {grade(data.score).g}
                     </div>
                     <p className={`mt-2 text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{grade(data.score).l}</p>
@@ -667,50 +667,50 @@ export default function MedicAI() {
                     </div>
                   </div>
                   <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 space-y-3 shadow-md`}>
-                    <h3 className={`text-lg font-bold ${data.darkMode ? 'text-white' : ''}`}>Info</h3>
-                    <div><label className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Age</label><p className={`p-3 ${data.darkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'} border ${data.darkMode ? 'border-gray-600' : ''} rounded-xl mt-1`}>{data.age}</p></div>
-                    <div><label className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Weight</label><p className={`p-3 ${data.darkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'} border ${data.darkMode ? 'border-gray-600' : ''} rounded-xl mt-1`}>{data.weight} lbs</p></div>
-                    <div><label className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Gender</label><p className={`p-3 ${data.darkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'} border ${data.darkMode ? 'border-gray-600' : ''} rounded-xl mt-1`}>{data.gender}</p></div>
-                    <div><label className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Activity</label><p className={`p-3 ${data.darkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'} border ${data.darkMode ? 'border-gray-600' : ''} rounded-xl mt-1`}>{data.activity}</p></div>
+                    <h3 className={`text-lg font-bold ${data.darkMode ? 'text-black' : ''}`}>Info</h3>
+                    <div><label className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Age</label><p className={`p-3 ${data.darkMode ? 'bg-gray-700 text-black' : 'bg-gray-50'} border ${data.darkMode ? 'border-gray-600' : ''} rounded-xl mt-1`}>{data.age}</p></div>
+                    <div><label className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Weight</label><p className={`p-3 ${data.darkMode ? 'bg-gray-700 text-black' : 'bg-gray-50'} border ${data.darkMode ? 'border-gray-600' : ''} rounded-xl mt-1`}>{data.weight} lbs</p></div>
+                    <div><label className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Gender</label><p className={`p-3 ${data.darkMode ? 'bg-gray-700 text-black' : 'bg-gray-50'} border ${data.darkMode ? 'border-gray-600' : ''} rounded-xl mt-1`}>{data.gender}</p></div>
+                    <div><label className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Activity</label><p className={`p-3 ${data.darkMode ? 'bg-gray-700 text-black' : 'bg-gray-50'} border ${data.darkMode ? 'border-gray-600' : ''} rounded-xl mt-1`}>{data.activity}</p></div>
                   </div>
                   <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 shadow-md`}>
-                    <h3 className={`text-lg font-bold mb-3 ${data.darkMode ? 'text-white' : ''}`}>Water Log</h3>
+                    <h3 className={`text-lg font-bold mb-3 ${data.darkMode ? 'text-black' : ''}`}>Water Log</h3>
                     {data.water.length === 0 ? (
                       <p className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-500'}`}>No entries</p>
                     ) : (
                       <div className="space-y-2">
                         {data.water.slice(-5).reverse().map((e, i) => (
                           <div key={i} className={`flex justify-between p-2 ${data.darkMode ? 'bg-gray-700' : 'bg-blue-50'} rounded-lg`}>
-                            <span className={`text-sm font-semibold ${data.darkMode ? 'text-white' : ''}`}>{e.amt} oz</span>
+                            <span className={`text-sm font-semibold ${data.darkMode ? 'text-black' : ''}`}>{e.amt} oz</span>
                             <span className={`text-xs ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{new Date(e.d).toLocaleDateString()}</span>
                           </div>
                         ))}
                       </div>
                     )}
-                    <button onClick={() => setShowWater(true)} className={`w-full mt-3 p-3 bg-${getAccent().primary} hover:bg-${getAccent().hover} text-white rounded-xl font-semibold`}>Log Water</button>
+                    <button onClick={() => setShowWater(true)} className={`w-full mt-3 p-3 bg-${getAccent().primary} hover:bg-${getAccent().hover} text-black rounded-xl font-semibold`}>Log Water</button>
                   </div>
                   <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-4 shadow-md`}>
-                    <h3 className={`text-lg font-bold mb-3 ${data.darkMode ? 'text-white' : ''}`}>Weight Log</h3>
+                    <h3 className={`text-lg font-bold mb-3 ${data.darkMode ? 'text-black' : ''}`}>Weight Log</h3>
                     {data.wLog.length === 0 ? (
                       <p className={`text-sm ${data.darkMode ? 'text-gray-400' : 'text-gray-500'}`}>No entries</p>
                     ) : (
                       <div className="space-y-2">
                         {data.wLog.slice(-5).reverse().map((e, i) => (
                           <div key={i} className={`flex justify-between p-2 ${data.darkMode ? 'bg-gray-700' : 'bg-green-50'} rounded-lg`}>
-                            <span className={`text-sm font-semibold ${data.darkMode ? 'text-white' : ''}`}>{e.w} lbs</span>
+                            <span className={`text-sm font-semibold ${data.darkMode ? 'text-black' : ''}`}>{e.w} lbs</span>
                             <span className={`text-xs ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{new Date(e.d).toLocaleDateString()}</span>
                           </div>
                         ))}
                       </div>
                     )}
-                    <button onClick={() => setShowWeight(true)} className="w-full mt-3 p-3 bg-green-500 hover:bg-green-600 text-white rounded-xl font-semibold">Log Weight</button>
+                    <button onClick={() => setShowWeight(true)} className="w-full mt-3 p-3 bg-green-500 hover:bg-green-600 text-black rounded-xl font-semibold">Log Weight</button>
                   </div>
                 </div>
               )}
               {profileTab === 'mental' && (
                 <div className="space-y-4">
                   <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-md`}>
-                    <h3 className={`text-lg font-bold mb-4 ${data.darkMode ? 'text-white' : ''}`}>Mental Health Check-ins</h3>
+                    <h3 className={`text-lg font-bold mb-4 ${data.darkMode ? 'text-black' : ''}`}>Mental Health Check-ins</h3>
                     {data.mentalCheckins.length === 0 ? (
                       <p className={`text-sm mb-4 ${data.darkMode ? 'text-gray-400' : 'text-gray-500'}`}>No check-ins yet</p>
                     ) : (
@@ -729,12 +729,12 @@ export default function MedicAI() {
                         ))}
                       </div>
                     )}
-                    <button onClick={() => setShowCheckin(true)} className="w-full p-3 bg-purple-500 hover:bg-purple-600 text-white rounded-xl font-semibold">New Check-in</button>
+                    <button onClick={() => setShowCheckin(true)} className="w-full p-3 bg-purple-500 hover:bg-purple-600 text-black rounded-xl font-semibold">New Check-in</button>
                   </div>
                   <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 shadow-md`}>
-                    <h3 className={`text-lg font-bold mb-4 ${data.darkMode ? 'text-white' : ''}`}>Therapy Sessions</h3>
+                    <h3 className={`text-lg font-bold mb-4 ${data.darkMode ? 'text-black' : ''}`}>Therapy Sessions</h3>
                     <p className={`text-sm mb-4 ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Total sessions: {data.therapySessions.length}</p>
-                    <button onClick={() => { setTherapyMsgs([]); setShowTherapy(true); }} className="w-full p-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl font-semibold">Start Session</button>
+                    <button onClick={() => { setTherapyMsgs([]); setShowTherapy(true); }} className="w-full p-3 bg-indigo-500 hover:bg-indigo-600 text-black rounded-xl font-semibold">Start Session</button>
                   </div>
                 </div>
               )}
@@ -745,27 +745,27 @@ export default function MedicAI() {
           <div className={`${data.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} border-t p-4 shadow-sm`}>
             <div className="flex gap-2">
               <input type="text" value={msg} onChange={(e) => setMsg(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && send()} placeholder="Ask anything..." className={`flex-1 p-3 ${data.darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400' : 'bg-white'} border rounded-xl focus:outline-none focus:border-blue-500`} />
-              <button onClick={send} disabled={load} className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-xl"><Send size={20} /></button>
+              <button onClick={send} disabled={load} className="bg-blue-500 hover:bg-blue-600 text-black p-3 rounded-xl"><Send size={20} /></button>
             </div>
           </div>
         )}
         <div className={`${data.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-t p-4 flex justify-around shadow-sm`}>
-          <button onClick={() => setPage('home')} className={`p-3 rounded-2xl ${page === 'home' ? 'bg-blue-500 text-white' : (data.darkMode ? 'text-gray-300' : 'text-gray-700')}`}><Home size={24} /></button>
-          <button onClick={() => setPage('chat')} className={`p-3 rounded-2xl ${page === 'chat' ? 'bg-blue-500 text-white' : (data.darkMode ? 'text-gray-300' : 'text-gray-700')}`}><MessageSquare size={24} /></button>
-          <button onClick={() => setPage('medications')} className={`p-3 rounded-2xl ${page === 'medications' ? 'bg-blue-500 text-white' : (data.darkMode ? 'text-gray-300' : 'text-gray-700')}`}><Pill size={24} /></button>
-          <button onClick={() => setPage('profile')} className={`p-3 rounded-2xl ${page === 'profile' ? 'bg-blue-500 text-white' : (data.darkMode ? 'text-gray-300' : 'text-gray-700')}`}><User size={24} /></button>
+          <button onClick={() => setPage('home')} className={`p-3 rounded-2xl ${page === 'home' ? 'bg-blue-500 text-black' : (data.darkMode ? 'text-gray-300' : 'text-gray-700')}`}><Home size={24} /></button>
+          <button onClick={() => setPage('chat')} className={`p-3 rounded-2xl ${page === 'chat' ? 'bg-blue-500 text-black' : (data.darkMode ? 'text-gray-300' : 'text-gray-700')}`}><MessageSquare size={24} /></button>
+          <button onClick={() => setPage('medications')} className={`p-3 rounded-2xl ${page === 'medications' ? 'bg-blue-500 text-black' : (data.darkMode ? 'text-gray-300' : 'text-gray-700')}`}><Pill size={24} /></button>
+          <button onClick={() => setPage('profile')} className={`p-3 rounded-2xl ${page === 'profile' ? 'bg-blue-500 text-black' : (data.darkMode ? 'text-gray-300' : 'text-gray-700')}`}><User size={24} /></button>
         </div>
       </div>
       {showSettings && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 w-full max-w-sm max-h-5/6 overflow-y-auto`}>
             <div className="flex justify-between items-center mb-6">
-              <h2 className={`text-2xl font-bold ${data.darkMode ? 'text-white' : ''}`}>Settings</h2>
-              <button onClick={() => setShowSettings(false)}><X size={24} className={data.darkMode ? 'text-white' : ''} /></button>
+              <h2 className={`text-2xl font-bold ${data.darkMode ? 'text-black' : ''}`}>Settings</h2>
+              <button onClick={() => setShowSettings(false)}><X size={24} className={data.darkMode ? 'text-black' : ''} /></button>
             </div>
             <div className="space-y-4">
               <div className={`flex items-center justify-between p-4 ${data.darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-xl`}>
-                <span className={`font-semibold ${data.darkMode ? 'text-white' : ''}`}>Dark Mode</span>
+                <span className={`font-semibold ${data.darkMode ? 'text-black' : ''}`}>Dark Mode</span>
                 <button 
                   onClick={() => setData(p => ({ ...p, darkMode: !p.darkMode }))}
                   className={`w-14 h-8 rounded-full transition-colors ${data.darkMode ? 'bg-blue-500' : 'bg-gray-300'}`}
@@ -775,7 +775,7 @@ export default function MedicAI() {
               </div>
               
               <div className={`p-4 ${data.darkMode ? 'bg-gray-700' : 'bg-gray-100'} rounded-xl`}>
-                <label className={`font-semibold block mb-2 ${data.darkMode ? 'text-white' : ''}`}>Accent Color</label>
+                <label className={`font-semibold block mb-2 ${data.darkMode ? 'text-black' : ''}`}>Accent Color</label>
                 <div className="grid grid-cols-3 gap-2">
                   {Object.keys(accentColors).map(color => (
                     <button 
@@ -787,15 +787,15 @@ export default function MedicAI() {
                 </div>
               </div>
               
-              <button onClick={() => setShowLayoutCustomize(true)} className={`w-full p-4 ${data.darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100'} rounded-xl font-semibold text-left`}>
+              <button onClick={() => setShowLayoutCustomize(true)} className={`w-full p-4 ${data.darkMode ? 'bg-gray-700 text-black' : 'bg-gray-100'} rounded-xl font-semibold text-left`}>
                 Customize Layout
               </button>
               
-              <button onClick={() => setShowEditProfile(true)} className={`w-full p-4 ${data.darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100'} rounded-xl font-semibold text-left`}>
+              <button onClick={() => setShowEditProfile(true)} className={`w-full p-4 ${data.darkMode ? 'bg-gray-700 text-black' : 'bg-gray-100'} rounded-xl font-semibold text-left`}>
                 Edit Profile
               </button>
               
-              <button onClick={() => setShowReset(true)} className="w-full p-4 bg-red-500 hover:bg-red-600 rounded-xl text-white font-semibold">Reset Account</button>
+              <button onClick={() => setShowReset(true)} className="w-full p-4 bg-red-500 hover:bg-red-600 rounded-xl text-black font-semibold">Reset Account</button>
             </div>
           </div>
         </div>
@@ -807,7 +807,7 @@ export default function MedicAI() {
             <p className="text-gray-600 mb-6">All data will be lost.</p>
             <div className="flex gap-3">
               <button onClick={() => setShowReset(false)} className="flex-1 p-3 bg-gray-200 rounded-xl font-semibold">Cancel</button>
-              <button onClick={doReset} className="flex-1 p-3 bg-red-500 hover:bg-red-600 rounded-xl text-white font-semibold">Reset</button>
+              <button onClick={doReset} className="flex-1 p-3 bg-red-500 hover:bg-red-600 rounded-xl text-black font-semibold">Reset</button>
             </div>
           </div>
         </div>
@@ -827,7 +827,7 @@ export default function MedicAI() {
                 setNewMed({ name: '', time: '' });
                 setShowAddMed(false);
               }
-            }} className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-xl font-semibold">Add</button>
+            }} className="w-full bg-blue-500 hover:bg-blue-600 text-black p-3 rounded-xl font-semibold">Add</button>
           </div>
         </div>
       )}
@@ -839,9 +839,9 @@ export default function MedicAI() {
               <button onClick={() => setShowWater(false)}><X size={24} /></button>
             </div>
             <div className="space-y-3">
-              <button onClick={() => { setData(p => ({ ...p, water: [...p.water, { amt: 8, d: new Date().toISOString() }] })); setShowWater(false); calc(); }} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-semibold">8 oz</button>
-              <button onClick={() => { setData(p => ({ ...p, water: [...p.water, { amt: 16, d: new Date().toISOString() }] })); setShowWater(false); calc(); }} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-semibold">16 oz</button>
-              <button onClick={() => { setData(p => ({ ...p, water: [...p.water, { amt: 24, d: new Date().toISOString() }] })); setShowWater(false); calc(); }} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-semibold">24 oz</button>
+              <button onClick={() => { setData(p => ({ ...p, water: [...p.water, { amt: 8, d: new Date().toISOString() }] })); setShowWater(false); calc(); }} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-black rounded-xl font-semibold">8 oz</button>
+              <button onClick={() => { setData(p => ({ ...p, water: [...p.water, { amt: 16, d: new Date().toISOString() }] })); setShowWater(false); calc(); }} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-black rounded-xl font-semibold">16 oz</button>
+              <button onClick={() => { setData(p => ({ ...p, water: [...p.water, { amt: 24, d: new Date().toISOString() }] })); setShowWater(false); calc(); }} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-black rounded-xl font-semibold">24 oz</button>
             </div>
           </div>
         </div>
@@ -858,7 +858,7 @@ export default function MedicAI() {
               <input type="range" min="50" max="500" value={wt} onChange={(e) => setWt(parseInt(e.target.value))} className="w-full mb-4" />
               <input type="number" value={wt} onChange={(e) => setWt(parseInt(e.target.value))} className="w-full p-3 bg-gray-50 border rounded-xl text-center text-2xl font-bold" />
             </div>
-            <button onClick={() => { setData(p => ({ ...p, wLog: [...p.wLog, { w: wt, d: new Date().toISOString() }], weight: wt.toString() })); setShowWeight(false); calc(); }} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-semibold">Log</button>
+            <button onClick={() => { setData(p => ({ ...p, wLog: [...p.wLog, { w: wt, d: new Date().toISOString() }], weight: wt.toString() })); setShowWeight(false); calc(); }} className="w-full p-4 bg-blue-500 hover:bg-blue-600 text-black rounded-xl font-semibold">Log</button>
           </div>
         </div>
       )}
@@ -903,7 +903,7 @@ export default function MedicAI() {
                 <label className="text-sm font-semibold mb-2 block">Notes (optional)</label>
                 <textarea value={checkin.notes} onChange={(e) => setCheckin({...checkin, notes: e.target.value})} className="w-full p-3 bg-gray-50 border rounded-xl" rows="3" placeholder="How are you feeling?"></textarea>
               </div>
-              <button onClick={saveCheckin} disabled={!checkin.mood || !checkin.energy || !checkin.stress} className="w-full p-4 bg-purple-500 hover:bg-purple-600 disabled:bg-gray-300 text-white rounded-xl font-semibold">Save Check-in</button>
+              <button onClick={saveCheckin} disabled={!checkin.mood || !checkin.energy || !checkin.stress} className="w-full p-4 bg-purple-500 hover:bg-purple-600 disabled:bg-gray-300 text-black rounded-xl font-semibold">Save Check-in</button>
             </div>
           </div>
         </div>
@@ -951,7 +951,7 @@ export default function MedicAI() {
             </div>
             <div className="flex gap-2">
               <input type="text" value={therapyMsg} onChange={(e) => setTherapyMsg(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && sendTherapy()} placeholder="Share your thoughts..." className="flex-1 p-3 bg-gray-50 border rounded-xl focus:outline-none focus:border-indigo-500" />
-              <button onClick={sendTherapy} disabled={therapyLoad} className="bg-indigo-500 hover:bg-indigo-600 text-white p-3 rounded-xl"><Send size={20} /></button>
+              <button onClick={sendTherapy} disabled={therapyLoad} className="bg-indigo-500 hover:bg-indigo-600 text-black p-3 rounded-xl"><Send size={20} /></button>
             </div>
           </div>
         </div>
@@ -964,7 +964,7 @@ export default function MedicAI() {
               <button onClick={() => setShowImg(false)}><X size={24} /></button>
             </div>
             <div className="space-y-3">
-              <button onClick={() => iRef.current.click()} className="w-full p-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-semibold">Upload Photo</button>
+              <button onClick={() => iRef.current.click()} className="w-full p-4 bg-green-500 hover:bg-green-600 text-black rounded-xl font-semibold">Upload Photo</button>
               <input ref={iRef} type="file" accept="image/*" onChange={(e) => {
                 const f = e.target.files[0];
                 if (f) {
@@ -988,8 +988,8 @@ export default function MedicAI() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 w-full max-w-sm`}>
             <div className="flex justify-between items-center mb-6">
-              <h3 className={`text-xl font-bold ${data.darkMode ? 'text-white' : ''}`}>Customize Layout</h3>
-              <button onClick={() => setShowLayoutCustomize(false)}><X size={24} className={data.darkMode ? 'text-white' : ''} /></button>
+              <h3 className={`text-xl font-bold ${data.darkMode ? 'text-black' : ''}`}>Customize Layout</h3>
+              <button onClick={() => setShowLayoutCustomize(false)}><X size={24} className={data.darkMode ? 'text-black' : ''} /></button>
             </div>
             <p className={`text-sm mb-4 ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Select features to show on home screen:</p>
             <div className="space-y-2">
@@ -1005,11 +1005,11 @@ export default function MedicAI() {
                   }}
                   className={`w-full p-4 rounded-xl border-2 transition ${data.layout.includes(feature.id) ? 'border-blue-500 bg-blue-50' : (data.darkMode ? 'border-gray-600 bg-gray-700' : 'border-gray-200')}`}
                 >
-                  <span className={data.darkMode && !data.layout.includes(feature.id) ? 'text-white' : ''}>{feature.name}</span>
+                  <span className={data.darkMode && !data.layout.includes(feature.id) ? 'text-black' : ''}>{feature.name}</span>
                 </button>
               ))}
             </div>
-            <button onClick={() => setShowLayoutCustomize(false)} className={`w-full mt-4 p-3 bg-${getAccent().primary} text-white rounded-xl font-semibold`}>Done</button>
+            <button onClick={() => setShowLayoutCustomize(false)} className={`w-full mt-4 p-3 bg-${getAccent().primary} text-black rounded-xl font-semibold`}>Done</button>
           </div>
         </div>
       )}
@@ -1017,31 +1017,31 @@ export default function MedicAI() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 w-full max-w-sm max-h-5/6 overflow-y-auto`}>
             <div className="flex justify-between items-center mb-6">
-              <h3 className={`text-xl font-bold ${data.darkMode ? 'text-white' : ''}`}>Edit Profile</h3>
-              <button onClick={() => setShowEditProfile(false)}><X size={24} className={data.darkMode ? 'text-white' : ''} /></button>
+              <h3 className={`text-xl font-bold ${data.darkMode ? 'text-black' : ''}`}>Edit Profile</h3>
+              <button onClick={() => setShowEditProfile(false)}><X size={24} className={data.darkMode ? 'text-black' : ''} /></button>
             </div>
             <div className="space-y-4">
               <div>
-                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-white' : ''}`}>Name</label>
-                <input type="text" value={data.name} onChange={(e) => setData({...data, name: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50'} border rounded-xl`} />
+                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-black' : ''}`}>Name</label>
+                <input type="text" value={data.name} onChange={(e) => setData({...data, name: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-black border-gray-600' : 'bg-gray-50'} border rounded-xl`} />
               </div>
               <div>
-                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-white' : ''}`}>Age</label>
-                <input type="number" value={data.age} onChange={(e) => setData({...data, age: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50'} border rounded-xl`} />
+                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-black' : ''}`}>Age</label>
+                <input type="number" value={data.age} onChange={(e) => setData({...data, age: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-black border-gray-600' : 'bg-gray-50'} border rounded-xl`} />
               </div>
               <div>
-                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-white' : ''}`}>Weight (lbs)</label>
-                <input type="number" value={data.weight} onChange={(e) => setData({...data, weight: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50'} border rounded-xl`} />
+                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-black' : ''}`}>Weight (lbs)</label>
+                <input type="number" value={data.weight} onChange={(e) => setData({...data, weight: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-black border-gray-600' : 'bg-gray-50'} border rounded-xl`} />
               </div>
               <div>
-                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-white' : ''}`}>Activity Level</label>
-                <select value={data.activity} onChange={(e) => setData({...data, activity: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50'} border rounded-xl`}>
+                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-black' : ''}`}>Activity Level</label>
+                <select value={data.activity} onChange={(e) => setData({...data, activity: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-black border-gray-600' : 'bg-gray-50'} border rounded-xl`}>
                   <option value="Low">Low</option>
                   <option value="Medium">Medium</option>
                   <option value="High">High</option>
                 </select>
               </div>
-              <button onClick={() => { calc(); setShowEditProfile(false); }} className={`w-full p-3 bg-${getAccent().primary} text-white rounded-xl font-semibold`}>Save Changes</button>
+              <button onClick={() => { calc(); setShowEditProfile(false); }} className={`w-full p-3 bg-${getAccent().primary} text-black rounded-xl font-semibold`}>Save Changes</button>
             </div>
           </div>
         </div>
@@ -1051,7 +1051,7 @@ export default function MedicAI() {
           <video ref={vRef} autoPlay playsInline className="flex-1 object-cover"></video>
           <canvas ref={cRef} className="hidden"></canvas>
           <div className="p-4 flex justify-center gap-4">
-            <button onClick={() => { if (vRef.current && vRef.current.srcObject) { vRef.current.srcObject.getTracks().forEach(t => t.stop()); } setCam(false); }} className="bg-gray-700 px-6 py-3 rounded-xl text-white font-semibold">Cancel</button>
+            <button onClick={() => { if (vRef.current && vRef.current.srcObject) { vRef.current.srcObject.getTracks().forEach(t => t.stop()); } setCam(false); }} className="bg-gray-700 px-6 py-3 rounded-xl text-black font-semibold">Cancel</button>
           </div>
         </div>
       )}
