@@ -1,309 +1,97 @@
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Mic,
-  Sparkles,
-  Camera,
-  Brain,
-  Stethoscope,
-  X,
-} from "lucide-react";
-// ====== Styles ======
-const styles = {
-  container: {
-    padding: "20px",
-    maxWidth: "650px",
-    margin: "0 auto",
-    fontFamily: "Arial, sans-serif",
-  },
-
-  title: {
-    fontSize: "26px",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-  },
-
-  responseBox: {
-    background: "#f5f7fa",
-    padding: "15px",
-    borderRadius: "10px",
-    minHeight: "80px",
-    border: "1px solid #dedede",
-    marginBottom: "20px",
-  },
-
-  loading: {
-    color: "#4da6ff",
-    fontStyle: "italic",
-    fontWeight: "bold",
-  },
-
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    marginBottom: "20px",
-  },
-
-  textarea: {
-    padding: "12px",
-    borderRadius: "8px",
-    border: "1px solid #ccc",
-    minHeight: "90px",
-    resize: "vertical",
-    fontSize: "14px",
-  },
-
-  button: {
-    background: "#4da6ff",
-    border: "none",
-    color: "white",
-    padding: "10px 15px",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    justifyContent: "center",
-  },
-
-  audioControls: {
-    display: "flex",
-    gap: "10px",
-    marginBottom: "25px",
-  },
-
-  iconButton: {
-    background: "#e6e6e6",
-    border: "none",
-    padding: "10px",
-    borderRadius: "50%",
-    cursor: "pointer",
-  },
-
-  cameraSection: {
-    marginTop: "20px",
-  },
-
-  cameraBox: {
-    position: "relative",
-    width: "100%",
-    background: "#000",
-    padding: "10px",
-    borderRadius: "10px",
-    marginBottom: "10px",
-  },
-
-  video: {
-    width: "100%",
-    borderRadius: "8px",
-  },
-
-  buttonSmall: {
-    marginTop: "10px",
-    width: "48%",
-    background: "#4da6ff",
-    border: "none",
-    color: "#fff",
-    padding: "8px",
-    borderRadius: "8px",
-    cursor: "pointer",
-  },
-
-  buttonSmallRed: {
-    marginTop: "10px",
-    width: "48%",
-    background: "#ff5959",
-    border: "none",
-    color: "#fff",
-    padding: "8px",
-    borderRadius: "8px",
-    cursor: "pointer",
-  },
-
-  photoHolder: {
-    marginTop: "15px",
-  },
-
-  capturedImg: {
-    width: "100%",
-    borderRadius: "10px",
-    boxShadow: "0 3px 10px rgba(0,0,0,0.15)",
-  },
-};
+import React from 'react';
+import { Sparkles, Heart } from 'lucide-react';
 
 export default function MedicAI() {
-  const [aiResponse, setAiResponse] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [audioURL, setAudioURL] = useState(null);
-  const [transcript, setTranscript] = useState("");
-  const [showCamera, setShowCamera] = useState(false);
-  const [capturedImg, setCapturedImg] = useState(null);
-
-  const mediaRecorderRef = useRef(null);
-  const audioChunksRef = useRef([]);
-  const videoRef = useRef(null);
-  const streamRef = useRef(null);
-
-  // ====== Microphone Recording ======
-  const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      audioChunksRef.current = [];
-      mediaRecorderRef.current = new MediaRecorder(stream);
-
-      mediaRecorderRef.current.ondataavailable = (e) => {
-        audioChunksRef.current.push(e.data);
-      };
-
-      mediaRecorderRef.current.onstop = () => {
-        const audioBlob = new Blob(audioChunksRef.current, { type: "audio/wav" });
-        const audioURL = URL.createObjectURL(audioBlob);
-        setAudioURL(audioURL);
-
-        // You would add your AI speech → text processing here
-      };
-
-      mediaRecorderRef.current.start();
-    } catch (err) {
-      console.error("Mic error:", err);
-    }
-  };
-
-  const stopRecording = () => {
-    if (mediaRecorderRef.current) {
-      mediaRecorderRef.current.stop();
-    }
-  };
-
-  // ====== Camera Handling ======
-  const startCamera = async () => {
-    try {
-      setShowCamera(true);
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      streamRef.current = stream;
-
-      if (videoRef.current) videoRef.current.srcObject = stream;
-    } catch (error) {
-      console.error("Camera error:", error);
-    }
-  };
-
-  const stopCamera = () => {
-    setShowCamera(false);
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-    }
-  };
-
-  const capturePhoto = () => {
-    const canvas = document.createElement("canvas");
-    canvas.width = videoRef.current.videoWidth;
-    canvas.height = videoRef.current.videoHeight;
-
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(videoRef.current, 0, 0);
-
-    const imgData = canvas.toDataURL("image/png");
-    setCapturedImg(imgData);
-    stopCamera();
-  };
-    // ====== AI Processing Simulation ======
-  const sendToAI = async (input) => {
-    setIsLoading(true);
-
-    // Simulate AI thinking
-    setTimeout(() => {
-      setAiResponse(
-        "This is your AI medical assistant. I’ve analyzed your input and generated feedback for you."
-      );
-      setIsLoading(false);
-    }, 1500);
-  };
-
-  // ====== Form Submission ======
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!transcript.trim()) return;
-    sendToAI(transcript);
-  };
-
   return (
-    <div className="medic-ai-container" style={styles.container}>
-      <h1 style={styles.title}>
-        <Sparkles size={28} color="#4da6ff" /> MedicAI Assistant
-      </h1>
-
-      {/* AI Response Card */}
-      <div style={styles.responseBox}>
-        {isLoading ? (
-          <p style={styles.loading}>Analyzing your request...</p>
-        ) : aiResponse ? (
-          <p>{aiResponse}</p>
-        ) : (
-          <p style={{ color: "#777" }}>Your medical insights will appear here.</p>
-        )}
-      </div>
-
-      {/* Text Input */}
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <textarea
-          value={transcript}
-          onChange={(e) => setTranscript(e.target.value)}
-          placeholder="Explain your symptoms or ask a question..."
-          style={styles.textarea}
-        />
-
-        <button type="submit" style={styles.button}>
-          <Brain size={18} /> Analyze
-        </button>
-      </form>
-
-      {/* Audio Recorder */}
-      <div style={styles.audioControls}>
-        <button onClick={startRecording} style={styles.iconButton}>
-          <Mic size={20} />
-        </button>
-        <button onClick={stopRecording} style={styles.iconButton}>
-          <X size={20} />
-        </button>
-
-        {audioURL && (
-          <audio controls style={{ marginTop: 10 }}>
-            <source src={audioURL} type="audio/wav" />
-          </audio>
-        )}
-      </div>
-
-      {/* Camera Capture */}
-      <div style={styles.cameraSection}>
-        {!showCamera && (
-          <button onClick={startCamera} style={styles.button}>
-            <Camera size={18} /> Open Camera
-          </button>
-        )}
-
-        {showCamera && (
-          <div style={styles.cameraBox}>
-            <video ref={videoRef} autoPlay style={styles.video} />
-            <button onClick={capturePhoto} style={styles.buttonSmall}>
-              Capture
-            </button>
-            <button onClick={stopCamera} style={styles.buttonSmallRed}>
-              Close
-            </button>
-          </div>
-        )}
-
-        {capturedImg && (
-          <div style={styles.photoHolder}>
-            <img src={capturedImg} alt="Captured" style={styles.capturedImg} />
-          </div>
-        )}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center p-6">
+      <div className="max-w-lg w-full bg-white rounded-xl p-6 shadow-lg">
+        <div className="flex items-center gap-4">
+          <Sparkles size={36} className="text-indigo-500" />
+          <h1 className="text-2xl font-bold">MedicAI</h1>
+        </div>
+        <p className="mt-4 text-gray-600">The app is running. Replace this stub with your full MedicAI component when you're ready.</p>
+        <div className="mt-6 flex items-center gap-3 text-sm text-gray-500">
+          <Heart size={16} className="text-pink-500" />
+          <span>Ready for Vercel deployment (build target: dist)</span>
+        </div>
       </div>
     </div>
   );
 }
+      {showImg && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-sm">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-bold">Photo Symptoms</h3>
+              <button onClick={() => setShowImg(false)}><X size={24} /></button>
+            </div>
+            <div className="space-y-3">
+              <button onClick={() => iRef.current.click()} className="w-full p-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-semibold">Upload Photo</button>
+              <input ref={iRef} type="file" accept="image/*" onChange={(e) => {
+                const f = e.target.files[0];
+                if (f) {
+                  const r = new FileReader();
+                  r.onload = () => {
+                    setShowImg(false);
+                    setPage('chat');
+                    setMsgs(p => [...p, 
+                      { t: 'u', txt: 'I uploaded a photo' },
+                      { t: 'a', txt: 'Thank you for sharing. Please describe what you\'re experiencing so I can provide better support.' }
+                    ]);
+                  };
+                  r.readAsDataURL(f);
+                }
+              }} className="hidden" />
+            </div>
+          </div>
+        </div>
+      )}
+      {showLayoutCustomize && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 w-full max-w-sm`}>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className={`text-xl font-bold ${data.darkMode ? 'text-white' : ''}`}>Customize Layout</h3>
+              <button onClick={() => setShowLayoutCustomize(false)}><X size={24} className={data.darkMode ? 'text-white' : ''} /></button>
+            </div>
+            <p className={`text-sm mb-4 ${data.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Select features to show on home screen:</p>
+            <div className="space-y-2">
+              {availableFeatures.map(feature => (
+                <button
+                  key={feature.id}
+                  onClick={() => {
+                    if (data.layout.includes(feature.id)) {
+                      setData(p => ({ ...p, layout: p.layout.filter(id => id !== feature.id) }));
+                    } else {
+                      setData(p => ({ ...p, layout: [...p.layout, feature.id] }));
+                    }
+                  }}
+                  className={`w-full p-4 rounded-xl border-2 transition ${data.layout.includes(feature.id) ? 'border-blue-500 bg-blue-50' : (data.darkMode ? 'border-gray-600 bg-gray-700' : 'border-gray-200')}`}
+                >
+                  <span className={data.darkMode && !data.layout.includes(feature.id) ? 'text-white' : ''}>{feature.name}</span>
+                </button>
+              ))}
+            </div>
+            <button onClick={() => setShowLayoutCustomize(false)} className={`w-full mt-4 p-3 bg-${getAccent().primary} text-white rounded-xl font-semibold`}>Done</button>
+          </div>
+        </div>
+      )}
+      {showEditProfile && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className={`${data.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl p-6 w-full max-w-sm max-h-5/6 overflow-y-auto`}>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className={`text-xl font-bold ${data.darkMode ? 'text-white' : ''}`}>Edit Profile</h3>
+              <button onClick={() => setShowEditProfile(false)}><X size={24} className={data.darkMode ? 'text-white' : ''} /></button>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-white' : ''}`}>Name</label>
+                <input type="text" value={data.name} onChange={(e) => setData({...data, name: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50'} border rounded-xl`} />
+              </div>
+              <div>
+                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-white' : ''}`}>Age</label>
+                <input type="number" value={data.age} onChange={(e) => setData({...data, age: e.target.value})} className={`w-full p-3 ${data.darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50'} border rounded-xl`} />
+              </div>
+              <div>
+                <label className={`text-sm font-semibold mb-2 block ${data.darkMode ? 'text-white' : ''}`}>Weight (lbs)</label>
+                <input type="number" value={data.weight} onChange={(e) => setData({...p
+
