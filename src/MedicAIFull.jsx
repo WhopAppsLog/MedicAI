@@ -1,4 +1,3 @@
-import React, { useState, useRef } from 'react';
 import { Mic, Sparkles, Camera, Brain, X } from 'lucide-react';
 
 export default function MedicAI() {
