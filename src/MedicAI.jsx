@@ -65,7 +65,7 @@ export default function MedicAI() {
                       setData(p => ({ ...p, layout: [...p.layout, feature.id] }));
                     }
                   }}
-                  className={`w-full p-4 rounded-xl border-2 transition ${data.layout.includes(feature.id) ? 'border-blue-500 bg-blue-50' : (data.darkMode ? 'border-gray-600 bg-gray-700' : 'border-gray-200')}`}
+                  className={`w-full p-4 rounded-xl border-2 transition ${data.layout.includes(feature.id) ? 'border-blue-500 bg-blue-50 text-gray-900' : (data.darkMode ? 'border-gray-600 bg-gray-700' : 'border-gray-200')}`}
                 >
                   <span className={data.darkMode && !data.layout.includes(feature.id) ? 'text-white' : ''}>{feature.name}</span>
                 </button>

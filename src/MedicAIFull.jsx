@@ -413,7 +413,7 @@ export default function MedicAI() {
                   <button
                     key={op}
                     onClick={() => setData({...data, [q.f]: op})}
-                    className={`w-full p-4 rounded-2xl border-2 transition-all ${data[q.f] === op ? 'border-blue-500 bg-blue-50 shadow-lg' : 'border-gray-200 hover:border-blue-300'}`}
+                    className={`w-full p-4 rounded-2xl border-2 transition-all ${data[q.f] === op ? 'border-blue-500 bg-blue-50 shadow-lg text-gray-900' : 'border-gray-200 hover:border-blue-300'}`}
                   >
                     {op}
                   </button>
@@ -437,7 +437,7 @@ export default function MedicAI() {
                         }
                       }
                     }}
-                    className={`w-full p-4 rounded-2xl border-2 transition-all ${(data[q.f] || []).includes(op) ? 'border-blue-500 bg-blue-50 shadow-lg' : 'border-gray-200 hover:border-blue-300'}`}
+                    className={`w-full p-4 rounded-2xl border-2 transition-all ${(data[q.f] || []).includes(op) ? 'border-blue-500 bg-blue-50 shadow-lg text-gray-900' : 'border-gray-200 hover:border-blue-300'}`}
                   >
                     {op}
                   </button>
